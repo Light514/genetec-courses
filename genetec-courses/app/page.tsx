@@ -58,7 +58,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-gray-900 text-white py-12 px-4">
+      <header className="text-white py-12 px-4" style={{ backgroundColor: '#2C3239' }}>
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl" style={{ fontFamily: 'var(--font-garamond), serif' }}>Training courses</h1>
         </div>

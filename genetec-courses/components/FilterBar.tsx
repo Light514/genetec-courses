@@ -27,7 +27,8 @@ export function FilterBar({ filters, onFilterChange, filterOptions }: FilterBarP
           <div key={key} className="relative">
             <button
               onClick={() => setOpenFilter(openFilter === key ? null : key)}
-              className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 flex items-center gap-2"
+              className="px-4 py-2 text-white rounded-md flex items-center gap-2"
+              style={{ backgroundColor: '#2C3239' }}
             >
               {category.label}
               {selectedCount > 0 && (
