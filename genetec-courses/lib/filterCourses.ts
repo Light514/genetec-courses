@@ -35,7 +35,7 @@ export function filterCourses(
           return values.includes(course.level);
         case 'languages':
           // INCLUDES logic: course must have at least one selected language
-          return values.some(lang => course.languages.includes(lang));
+          return values.some((lang: string) => course.languages.includes(lang));
         default:
           return true;
       }
