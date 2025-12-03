@@ -22,7 +22,8 @@ export function filterCourses(
     result = result.filter(course => {
       switch (key) {
         case 'deliveryType':
-          return values.includes(course.deliveryType);
+          // INCLUDES logic: course must have at least one selected delivery type
+          return values.some((type: string) => course.deliveryType.includes(type));
         case 'certification':
           return values.includes(course.certification);
         case 'audience':

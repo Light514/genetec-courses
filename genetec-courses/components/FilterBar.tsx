@@ -31,7 +31,7 @@ export function FilterBar({ filters, onFilterChange, filterOptions }: FilterBarP
             >
               {category.label}
               {selectedCount > 0 && (
-                <span className="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
+                <span className="text-white text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: '#3DC1F3' }}>
                   {selectedCount}
                 </span>
               )}

@@ -37,7 +37,7 @@ export function CourseCard({ course, index }: CourseCardProps) {
       {/* Badges */}
       <div className="flex flex-wrap gap-2 mb-3">
         {course.certification === "Yes" && (
-          <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded">
+          <span className="px-2 py-1 text-xs rounded" style={{ backgroundColor: '#E6F7FD', color: '#3DC1F3' }}>
             Certification
           </span>
         )}

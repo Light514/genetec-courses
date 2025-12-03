@@ -2,7 +2,7 @@ export interface Course {
   code: string;
   title: string;
   certification: "Yes" | "No";
-  deliveryType: string;
+  deliveryType: string[];  // Array of delivery types (like languages)
   level: string;
   audience: string;
   productLine: string;

@@ -45,7 +45,8 @@ export function FilterDropdown({ options, selected, onChange, isOpen }: FilterDr
           {selected.length > 0 && (
             <button
               onClick={() => onChange([])}
-              className="mt-3 text-sm text-blue-600 hover:underline"
+              className="mt-3 text-sm hover:underline"
+              style={{ color: '#3DC1F3' }}
             >
               Clear all
             </button>

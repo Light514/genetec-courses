@@ -5,17 +5,12 @@
       {
         "value": "Instructor-led",
         "label": "Instructor-led",
-        "count": 10
-      },
-      {
-        "value": "Instructor-led & Self-paced",
-        "label": "Instructor-led & Self-paced",
-        "count": 2
+        "count": 13
       },
       {
         "value": "Self-paced",
         "label": "Self-paced",
-        "count": 31
+        "count": 34
       }
     ]
   },
