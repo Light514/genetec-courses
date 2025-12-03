@@ -1,0 +1,192 @@
+{
+  "deliveryType": {
+    "label": "Delivery type",
+    "options": [
+      {
+        "value": "Instructor-led",
+        "label": "Instructor-led",
+        "count": 10
+      },
+      {
+        "value": "Instructor-led & Self-paced",
+        "label": "Instructor-led & Self-paced",
+        "count": 2
+      },
+      {
+        "value": "Self-paced",
+        "label": "Self-paced",
+        "count": 31
+      }
+    ]
+  },
+  "certification": {
+    "label": "Certification",
+    "options": [
+      {
+        "value": "Yes",
+        "label": "Certification courses",
+        "count": 21
+      },
+      {
+        "value": "No",
+        "label": "Non-certification courses",
+        "count": 22
+      }
+    ]
+  },
+  "audience": {
+    "label": "Audience",
+    "options": [
+      {
+        "value": "Administrator",
+        "label": "Administrator",
+        "count": 30
+      },
+      {
+        "value": "Operator",
+        "label": "Operator",
+        "count": 12
+      },
+      {
+        "value": "Power user",
+        "label": "Power user",
+        "count": 1
+      }
+    ]
+  },
+  "productCategory": {
+    "label": "Product category",
+    "options": [
+      {
+        "value": "Access control",
+        "label": "Access control",
+        "count": 8
+      },
+      {
+        "value": "Automatic license plate recognition",
+        "label": "Automatic license plate recognition",
+        "count": 5
+      },
+      {
+        "value": "Collaborative decision management",
+        "label": "Collaborative decision management",
+        "count": 2
+      },
+      {
+        "value": "Video management",
+        "label": "Video management",
+        "count": 7
+      },
+      {
+        "value": "communications management",
+        "label": "communications management",
+        "count": 2
+      },
+      {
+        "value": "digital evidence management",
+        "label": "digital evidence management",
+        "count": 2
+      },
+      {
+        "value": "evacuation management",
+        "label": "evacuation management",
+        "count": 2
+      },
+      {
+        "value": "physical security as a service",
+        "label": "physical security as a service",
+        "count": 5
+      },
+      {
+        "value": "unified security platform",
+        "label": "unified security platform",
+        "count": 9
+      }
+    ]
+  },
+  "productLine": {
+    "label": "Product line",
+    "options": [
+      {
+        "value": "AutoVu",
+        "label": "AutoVu",
+        "count": 5
+      },
+      {
+        "value": "Clearance",
+        "label": "Clearance",
+        "count": 2
+      },
+      {
+        "value": "KiwiVision",
+        "label": "KiwiVision",
+        "count": 4
+      },
+      {
+        "value": "Mission Control",
+        "label": "Mission Control",
+        "count": 2
+      },
+      {
+        "value": "Omnicast",
+        "label": "Omnicast",
+        "count": 3
+      },
+      {
+        "value": "Security Center",
+        "label": "Security Center",
+        "count": 14
+      },
+      {
+        "value": "Security Center SaaS",
+        "label": "Security Center SaaS",
+        "count": 5
+      },
+      {
+        "value": "Sipelia",
+        "label": "Sipelia",
+        "count": 2
+      },
+      {
+        "value": "Synergis",
+        "label": "Synergis",
+        "count": 5
+      }
+    ]
+  },
+  "level": {
+    "label": "Level",
+    "options": [
+      {
+        "value": "Advanced",
+        "label": "Advanced",
+        "count": 6
+      },
+      {
+        "value": "Fundamentals",
+        "label": "Fundamentals",
+        "count": 37
+      }
+    ]
+  },
+  "languages": {
+    "label": "Languages",
+    "options": [
+      {
+        "value": "English",
+        "label": "English",
+        "count": 43
+      },
+      {
+        "value": "French",
+        "label": "French",
+        "count": 43
+      },
+      {
+        "value": "Spanish",
+        "label": "Spanish",
+        "count": 24
+      }
+    ]
+  }
+}
