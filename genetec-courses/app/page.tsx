@@ -60,7 +60,7 @@ export default function HomePage() {
       {/* Header */}
       <header className="bg-gray-900 text-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-serif font-garamond">Training courses</h1>
+          <h1 className="text-4xl" style={{ fontFamily: 'var(--font-garamond), serif' }}>Training courses</h1>
         </div>
       </header>
 
