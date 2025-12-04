@@ -27,7 +27,7 @@ export function FilterBar({ filters, onFilterChange, filterOptions }: FilterBarP
           <div key={key} className="relative">
             <button
               onClick={() => setOpenFilter(openFilter === key ? null : key)}
-              className="px-4 py-2 text-white rounded-md flex items-center gap-2"
+              className="px-4 py-2 text-white rounded-md flex items-center gap-2 cursor-pointer hover:brightness-110 transition-all duration-200"
               style={{ backgroundColor: '#2C3239' }}
             >
               {category.label}
