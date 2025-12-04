@@ -2,11 +2,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { FilterBar } from '@/components/FilterBar';
 import { SearchBar } from '@/components/SearchBar';
+import { SortBar } from '@/components/SortBar';
 import { CourseGrid } from '@/components/CourseGrid';
 import { LoadMoreButton } from '@/components/LoadMoreButton';
 import { parseCourses } from '@/lib/parseCourses';
 import { parseFilters } from '@/lib/parseFilters';
 import { filterCourses } from '@/lib/filterCourses';
+import { sortCourses, type SortOption, type SortOrder } from '@/lib/sortCourses';
 import type { Course, FiltersData, FilterState } from '@/lib/types';
 
 export default function HomePage() {
@@ -23,6 +25,8 @@ export default function HomePage() {
   });
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(12);
+  const [sortBy, setSortBy] = useState<SortOption>('none');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
 
   // Load data
   useEffect(() => {
@@ -33,11 +37,11 @@ export default function HomePage() {
       });
   }, []);
 
-  // Filter and search
-  const filteredCourses = useMemo(() =>
-    filterCourses(allCourses, filters, searchQuery),
-    [allCourses, filters, searchQuery]
-  );
+  // Filter, search, and sort
+  const filteredCourses = useMemo(() => {
+    const filtered = filterCourses(allCourses, filters, searchQuery);
+    return sortCourses(filtered, sortBy, sortOrder);
+  }, [allCourses, filters, searchQuery, sortBy, sortOrder]);
 
   const visibleCourses = useMemo(() =>
     filteredCourses.slice(0, visibleCount),
@@ -47,6 +51,11 @@ export default function HomePage() {
   const handleFilterChange = (key: keyof FilterState, values: string[]) => {
     setFilters(prev => ({ ...prev, [key]: values }));
     setVisibleCount(12); // Reset pagination
+  };
+
+  const handleSortChange = (newSortBy: SortOption, newSortOrder: SortOrder) => {
+    setSortBy(newSortBy);
+    setSortOrder(newSortOrder);
   };
 
   const handleLoadMore = () => {
@@ -75,6 +84,13 @@ export default function HomePage() {
           filters={filters}
           onFilterChange={handleFilterChange}
           filterOptions={filterOptions}
+        />
+
+        {/* Sort Controls */}
+        <SortBar
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSortChange={handleSortChange}
         />
 
         {/* Results Count */}

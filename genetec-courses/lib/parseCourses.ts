@@ -38,9 +38,9 @@ export async function parseCourses(): Promise<Course[]> {
   const courses: Course[] = result.data
     .filter((row: any) => row.Icon && row.Icon.trim() !== '')
     .map((row: any) => {
-      const title = row.Title || '';
+      const title = (row.Title || '').trim();
       return {
-        code: row.Code || '',
+        code: (row.Code || '').trim(),
         title,
         certification: row.Certification as "Yes" | "No",
         deliveryType: deliveryTypesMap.get(title) || [],
