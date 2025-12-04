@@ -7,11 +7,12 @@ export function filterCourses(
 ): Course[] {
   let result = courses;
 
-  // Apply search (by title)
+  // Apply search (by title or code)
   if (searchQuery.trim()) {
     const query = searchQuery.toLowerCase();
     result = result.filter(course =>
-      course.title.toLowerCase().includes(query)
+      course.title.toLowerCase().includes(query) ||
+      course.code.toLowerCase().includes(query)
     );
   }
 

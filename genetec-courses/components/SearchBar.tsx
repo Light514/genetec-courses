@@ -11,7 +11,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search courses..."
+        placeholder="Search by title or code..."
         className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 w-full md:w-80"
         style={{
           ['--tw-ring-color' as any]: '#3DC1F3'

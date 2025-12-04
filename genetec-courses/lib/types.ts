@@ -41,3 +41,11 @@ export interface FilterState {
   level: string[];
   languages: string[];
 }
+
+export type ViewMode = 'grid' | 'list' | 'matrix';
+
+export interface AudienceCounts {
+  operator: number;
+  administrator: number;
+  powerUser: number;
+}

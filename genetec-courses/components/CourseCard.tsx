@@ -29,6 +29,9 @@ export function CourseCard({ course, index }: CourseCardProps) {
         />
       </div>
 
+      {/* Course Code */}
+      <div className="text-xs text-gray-500 uppercase mb-1">{course.code}</div>
+
       {/* Title */}
       <h3 className="text-lg font-medium mb-3 line-clamp-2">
         {course.title}

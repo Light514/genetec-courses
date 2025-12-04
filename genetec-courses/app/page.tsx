@@ -1,15 +1,19 @@
 "use client";
 import { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FilterBar } from '@/components/FilterBar';
 import { SearchBar } from '@/components/SearchBar';
+import { ViewSwitcher } from '@/components/ViewSwitcher';
 import { SortBar } from '@/components/SortBar';
 import { CourseGrid } from '@/components/CourseGrid';
+import { CourseList } from '@/components/CourseList';
+import { CourseMatrix } from '@/components/CourseMatrix';
 import { LoadMoreButton } from '@/components/LoadMoreButton';
 import { parseCourses } from '@/lib/parseCourses';
 import { parseFilters } from '@/lib/parseFilters';
 import { filterCourses } from '@/lib/filterCourses';
 import { sortCourses, type SortOption, type SortOrder } from '@/lib/sortCourses';
-import type { Course, FiltersData, FilterState } from '@/lib/types';
+import type { Course, FiltersData, FilterState, ViewMode } from '@/lib/types';
 
 export default function HomePage() {
   const [allCourses, setAllCourses] = useState<Course[]>([]);
@@ -27,6 +31,8 @@ export default function HomePage() {
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const [sortBy, setSortBy] = useState<SortOption>('none');
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [expandedProducts, setExpandedProducts] = useState<Set<string>>(new Set());
 
   // Load data
   useEffect(() => {
@@ -74,8 +80,9 @@ export default function HomePage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Search */}
-        <div className="flex justify-end mb-6">
+        {/* View Switcher and Search */}
+        <div className="flex justify-end items-center gap-4 mb-6">
+          <ViewSwitcher value={viewMode} onChange={setViewMode} />
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
         </div>
 
@@ -98,14 +105,60 @@ export default function HomePage() {
           Showing {visibleCourses.length} of {filteredCourses.length} courses
         </div>
 
-        {/* Grid */}
-        <CourseGrid courses={visibleCourses} />
+        {/* View Modes */}
+        <AnimatePresence mode="wait">
+          {viewMode === 'grid' && (
+            <motion.div
+              key="grid"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CourseGrid courses={visibleCourses} />
+            </motion.div>
+          )}
+          {viewMode === 'list' && (
+            <motion.div
+              key="list"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CourseList courses={visibleCourses} />
+            </motion.div>
+          )}
+          {viewMode === 'matrix' && (
+            <motion.div
+              key="matrix"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CourseMatrix
+                courses={filteredCourses}
+                expandedProducts={expandedProducts}
+                onToggleProduct={(product) => {
+                  setExpandedProducts(prev => {
+                    const next = new Set(prev);
+                    next.has(product) ? next.delete(product) : next.add(product);
+                    return next;
+                  });
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Load More */}
-        <LoadMoreButton
-          onClick={handleLoadMore}
-          hasMore={visibleCount < filteredCourses.length}
-        />
+        {viewMode !== 'matrix' && (
+          <LoadMoreButton
+            onClick={handleLoadMore}
+            hasMore={visibleCount < filteredCourses.length}
+          />
+        )}
       </main>
     </div>
   );
