@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ViewMode } from '@/lib/types';
 
@@ -10,12 +10,39 @@ interface ViewSwitcherProps {
 
 export function ViewSwitcher({ value, onChange }: ViewSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile and auto-switch from List to Grid
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.matchMedia('(max-width: 767px)').matches;
+      setIsMobile(mobile);
+
+      // Auto-switch from List to Grid on mobile
+      if (mobile && value === 'list') {
+        onChange('grid');
+      }
+    };
+
+    checkMobile();
+
+    // Listen for resize
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    mediaQuery.addEventListener('change', checkMobile);
+
+    return () => mediaQuery.removeEventListener('change', checkMobile);
+  }, [value, onChange]);
 
   const viewOptions: { value: ViewMode; label: string }[] = [
     { value: 'grid', label: 'Grid' },
     { value: 'list', label: 'List' },
     { value: 'matrix', label: 'Matrix' },
   ];
+
+  // Filter out List option on mobile
+  const availableOptions = isMobile
+    ? viewOptions.filter(opt => opt.value !== 'list')
+    : viewOptions;
 
   const handleViewChange = (newView: ViewMode) => {
     onChange(newView);
@@ -46,7 +73,7 @@ export function ViewSwitcher({ value, onChange }: ViewSwitcherProps) {
             exit={{ opacity: 0, y: -10 }}
           >
             <div className="space-y-1">
-              {viewOptions.map(option => (
+              {availableOptions.map(option => (
                 <button
                   key={option.value}
                   onClick={() => handleViewChange(option.value)}
